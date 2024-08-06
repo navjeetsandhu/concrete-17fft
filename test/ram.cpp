@@ -41,7 +41,7 @@ int main()
 
     for (int i = 0; i < memsize; i++) {
         pmu[i] = {};
-        pmu[i][0] = pmemory[i] ? ksP::domainP::μ : -ksP::domainP::μ;
+        pmu[i][0] = pmemory[i] ? ksP::domainP::mu : -ksP::domainP::mu;
     }
     for (uint8_t &p : address) p = binary(engine);
     uint32_t addressint = 0;
@@ -69,10 +69,10 @@ int main()
         (*encmemory)[i] = trlweSymEncrypt<typename ksP::domainP>(
             pmu[i], (*sk).key.get<typename ksP::domainP>());
     cs = tlweSymEncrypt<typename ksP::domainP>(
-        wrflag ? ksP::domainP::μ : -ksP::domainP::μ,
+        wrflag ? ksP::domainP::mu : -ksP::domainP::mu,
         (*sk).key.get<typename ksP::domainP>());
     c1 = tlweSymEncrypt<typename ksP::domainP>(
-        writep ? ksP::domainP::μ : -ksP::domainP::μ,
+        writep ? ksP::domainP::mu : -ksP::domainP::mu,
         (*sk).key.get<typename ksP::domainP>());
 
     chrono::system_clock::time_point start, end;
@@ -99,7 +99,7 @@ int main()
         TLWE<typename CBiksP::targetP> temp3;
         IdentityKeySwitch<CBiksP>(temp3, temp2, *iksk);
         BlindRotate<brP>((*encmemory)[i], temp3, ek.getbkfft<brP>(),
-                         μpolygen<typename brP::targetP, brP::targetP::μ>());
+                         mupolygen<typename brP::targetP, brP::targetP::mu>());
     }
 
     end = chrono::system_clock::now();

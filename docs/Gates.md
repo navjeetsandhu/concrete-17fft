@@ -9,11 +9,11 @@ Becuase all of the gates classified into this category(AND,XOR,OR,NAND,XNOR,NOR,
 As you can easily find, there are two definition of HomNAND. 
 
 ```
-template <class brP = lvl01param, typename brP::targetP::T μ = lvl1param::μ, class iksP = lvl10param>
+template <class brP = lvl01param, typename brP::targetP::T mu = lvl1param::mu, class iksP = lvl10param>
 void HomNAND(TLWE<typename iksP::targetP> &res, const TLWE<typename brP::domainP> &ca, const TLWE<typename brP::domainP> &cb,
                     const EvalKey &ek)
 
-template <class iksP = lvl10param, class brP = lvl01param, typename brP::targetP::T μ = lvl1param::μ>
+template <class iksP = lvl10param, class brP = lvl01param, typename brP::targetP::T mu = lvl1param::mu>
 void HomNAND(TLWE<typename brP::targetP> &res, const TLWE<typename iksP::domainP> &ca, const TLWE<typename iksP::domainP> &cb,
              const EvalKey &ek)
 ```

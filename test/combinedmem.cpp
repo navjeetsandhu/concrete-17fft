@@ -90,7 +90,7 @@ void combWRAM(std::vector<array<TRLWE<lvl1param>, 1U << address_bit>> &encram,
             TLWE<lvl0param> temp3;
             IdentityKeySwitch<lvl10param>(temp3, temp2, *ek.iksklvl10);
             BlindRotate<lvl01param>(encram[j][i], temp3, *ek.bkfftlvl01,
-                                    μpolygen<lvl1param, lvl1param::μ>());
+                                    mupolygen<lvl1param, lvl1param::mu>());
         }
     }
 }
@@ -140,13 +140,13 @@ int main()
                 for (int j = 0; j < numramtrlwe; j++) {
                     ramu[i][j] = {};
                     ramu[i][j][0] =
-                        ramp[j * words + i] ? lvl1param::μ : -lvl1param::μ;
+                        ramp[j * words + i] ? lvl1param::mu : -lvl1param::mu;
                 }
             }
             for (int i = 0; i < numromtrlwe; i++) {
                 for (int j = 0; j < lvl1param::n; j++) {
-                    romu[i][j] = romp[i * lvl1param::n + j] ? lvl1param::μ
-                                                            : -lvl1param::μ;
+                    romu[i][j] = romp[i * lvl1param::n + j] ? lvl1param::mu
+                                                            : -lvl1param::mu;
                 }
             }
 
@@ -187,11 +187,11 @@ int main()
                         trlweSymEncrypt<lvl1param>(ramu[i][j], (*sk).key.lvl1);
 
             encwrflag = tlweSymEncrypt<lvl1param>(
-                (wrflag > 0) ? lvl1param::μ : -lvl1param::μ, (*sk).key.lvl1);
+                (wrflag > 0) ? lvl1param::mu : -lvl1param::mu, (*sk).key.lvl1);
 
             for (int i = 0; i < words; i++)
                 encwritep[i] = tlweSymEncrypt<lvl1param>(
-                    writep[i] ? lvl1param::μ : -lvl1param::μ, (*sk).key.lvl1);
+                    writep[i] ? lvl1param::mu : -lvl1param::mu, (*sk).key.lvl1);
 
             chrono::system_clock::time_point start, end;
             start = chrono::system_clock::now();

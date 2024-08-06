@@ -19,7 +19,7 @@ struct lvl0param {
     static constexpr double α =
         3.2192861177056265e-06;  // fresh noise, 2^{-17.6}
     using T = uint32_t;          // Torus representation
-    static constexpr std::make_signed_t<T> μ =
+    static constexpr std::make_signed_t<T> mu =
         1U << (std::numeric_limits<T>::digits - 3);
     static constexpr uint32_t plain_modulus = 2;
     static constexpr double Δ =
@@ -38,7 +38,7 @@ struct lvlhalfparam {
         ErrorDistribution::ModularGaussian;
     static const inline double α = std::pow(2.0, -17);  // fresh noise
     using T = uint32_t;                                 // Torus representation
-    static constexpr std::make_signed_t<T> μ =
+    static constexpr std::make_signed_t<T> mu =
         1U << (std::numeric_limits<T>::digits - 3);
     static constexpr uint32_t plain_modulus = 8;
     static constexpr double Δ =
@@ -62,7 +62,7 @@ struct lvl1param {
     static const inline double α =
         3.966608917163306e-12;  // fresh noise, 2^{-24.8...}
     using T = uint64_t;         // Torus representation
-    static constexpr std::make_signed_t<T> μ = 1ULL << 61;
+    static constexpr std::make_signed_t<T> mu = 1ULL << 61;
     static constexpr uint32_t plain_modulus = 2;
     static constexpr double Δ =
         2 * static_cast<double>(1ULL << (std::numeric_limits<T>::digits - 1)) /
@@ -83,9 +83,9 @@ struct lvl2param {
         ErrorDistribution::ModularGaussian;
     static const inline double α = std::pow(2.0, -44);  // fresh noise
     using T = uint64_t;                                 // Torus representation
-    static constexpr std::make_signed_t<T> μ = 1ULL << 61;
+    static constexpr std::make_signed_t<T> mu = 1ULL << 61;
     static constexpr uint32_t plain_modulus = 8;
-    static constexpr double Δ = μ;
+    static constexpr double Δ = mu;
 };
 
 // Dummy
@@ -103,7 +103,7 @@ struct lvl3param {
         ErrorDistribution::ModularGaussian;
     static const inline double α = std::pow(2.0, -47);  // fresh noise
     using T = uint64_t;                                 // Torus representation
-    static constexpr T μ = 1ULL << 61;
+    static constexpr T mu = 1ULL << 61;
     static constexpr uint32_t plain_modulusbit = 31;
     static constexpr uint64_t plain_modulus = 1ULL << plain_modulusbit;
     static constexpr double Δ = 1ULL << (64 - plain_modulusbit - 1);

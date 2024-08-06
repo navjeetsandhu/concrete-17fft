@@ -19,7 +19,7 @@ int main()
         for (typename TFHEpp::lvl1param::T &i : pa) i = binary(engine) ? 1 : -1;
         for (int i = 0; i < TFHEpp::lvl1param::n; i++)
             pmu[i] =
-                (pa[i] == 1) ? TFHEpp::lvl1param::μ : -TFHEpp::lvl1param::μ;
+                (pa[i] == 1) ? TFHEpp::lvl1param::mu : -TFHEpp::lvl1param::mu;
 
         const uint d = (1U << ldist(engine)) + 1;
 

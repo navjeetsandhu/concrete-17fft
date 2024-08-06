@@ -22,7 +22,7 @@ int main()
             std::array<typename TFHEpp::lvl1param::T, TFHEpp::lvl1param::n>
                 pmu = {};
             for (int i = 0; i < TFHEpp::lvl1param::n; i++)
-                pmu[i] = p[i] ? TFHEpp::lvl1param::μ : -TFHEpp::lvl1param::μ;
+                pmu[i] = p[i] ? TFHEpp::lvl1param::mu : -TFHEpp::lvl1param::mu;
             TFHEpp::TRLWERAINTT<TFHEpp::lvl1param> craintt =
                 TFHEpp::trlwerainttSymEncrypt<TFHEpp::lvl1param>(pmu, 3,
                                                                  key.lvl1);

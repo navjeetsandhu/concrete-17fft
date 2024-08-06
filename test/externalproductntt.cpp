@@ -20,7 +20,7 @@ int main()
         for (bool &i : p) i = (binary(engine) > 0);
         TFHEpp::Polynomial<TFHEpp::lvl1param> pmu;
         for (int i = 0; i < TFHEpp::lvl1param::n; i++)
-            pmu[i] = p[i] ? TFHEpp::lvl1param::μ : -TFHEpp::lvl1param::μ;
+            pmu[i] = p[i] ? TFHEpp::lvl1param::mu : -TFHEpp::lvl1param::mu;
         TFHEpp::TRLWE<TFHEpp::lvl1param> c =
             TFHEpp::trlweSymEncrypt<TFHEpp::lvl1param>(pmu, key.lvl1);
 
@@ -46,7 +46,7 @@ int main()
         for (bool &i : p) i = binary(engine) > 0;
         std::array<typename TFHEpp::lvl1param::T, TFHEpp::lvl1param::n> pmu;
         for (int i = 0; i < TFHEpp::lvl1param::n; i++)
-            pmu[i] = p[i] ? TFHEpp::lvl1param::μ : -TFHEpp::lvl1param::μ;
+            pmu[i] = p[i] ? TFHEpp::lvl1param::mu : -TFHEpp::lvl1param::mu;
         TFHEpp::TRLWE<TFHEpp::lvl1param> c =
             TFHEpp::trlweSymEncrypt<TFHEpp::lvl1param>(pmu, key.lvl1);
 

@@ -31,7 +31,7 @@ int main()
         for (uint8_t &p : i) p = binary(engine);
     for (int i = 0; i < num_test; i++)
         for (int j = 0; j < lvl1param::n; j++)
-            pmu[i][j] = pa[i][j] ? lvl1param::μ : -lvl1param::μ;
+            pmu[i][j] = pa[i][j] ? lvl1param::mu : -lvl1param::mu;
     for (int i = 0; i < num_test; i++) pzeros[i] = false;
     vector<TRLWE<lvl1param>,
            TFHEpp::AlignedAllocator<TFHEpp::TRLWE<TFHEpp::lvl1param>, 64>>

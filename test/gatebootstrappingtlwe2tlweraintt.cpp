@@ -24,7 +24,7 @@ int main()
     for (int i = 0; i < num_test; i++) p[i] = binary(engine) > 0;
     for (int i = 0; i < num_test; i++)
         tlwe[i] = TFHEpp::tlweSymEncrypt<typename bkP::domainP>(
-            p[i] ? bkP::domainP::μ : -bkP::domainP::μ, bkP::domainP::α,
+            p[i] ? bkP::domainP::mu : -bkP::domainP::mu, bkP::domainP::α,
             sk.key.get<typename bkP::domainP>());
 
     std::chrono::system_clock::time_point start, end;
@@ -33,7 +33,7 @@ int main()
     for (int test = 0; test < num_test; test++) {
         TFHEpp::GateBootstrappingTLWE2TLWERAINTT<bkP>(
             bootedtlwe[test], tlwe[test], *bk,
-            TFHEpp::μpolygen<typename bkP::targetP, bkP::targetP::μ>());
+            TFHEpp::mupolygen<typename bkP::targetP, bkP::targetP::mu>());
     }
 
     end = std::chrono::system_clock::now();

@@ -70,7 +70,7 @@ void BM_TLWE2TRLWE(benchmark::State& state)
     for (auto _ : state)
         TFHEpp::BlindRotate<TFHEpp::lvl01param>(
             res, ca, *ek.bkfftlvl01,
-            TFHEpp::μpolygen<TFHEpp::lvl1param, TFHEpp::lvl1param::μ>());
+            TFHEpp::mupolygen<TFHEpp::lvl1param, TFHEpp::lvl1param::mu>());
 }
 
 void BM_IKS(benchmark::State& state)
@@ -97,7 +97,7 @@ void BM_SEI(benchmark::State& state)
     const std::unique_ptr<TFHEpp::SecretKey> sk(new TFHEpp::SecretKey());
     std::array<typename TFHEpp::lvl1param::T, TFHEpp::lvl1param::n> pmu;
     for (int j = 0; j < TFHEpp::lvl1param::n; j++)
-        pmu[j] = binary(engine) ? TFHEpp::lvl1param::μ : -TFHEpp::lvl1param::μ;
+        pmu[j] = binary(engine) ? TFHEpp::lvl1param::mu : -TFHEpp::lvl1param::mu;
     TFHEpp::TRLWE<TFHEpp::lvl1param> ca =
         TFHEpp::trlweSymEncrypt<TFHEpp::lvl1param>(pmu, TFHEpp::lvl1param::α,
                                                    sk->key.lvl1);
@@ -114,9 +114,9 @@ void BM_CMUX(benchmark::State& state)
     const std::unique_ptr<TFHEpp::SecretKey> sk(new TFHEpp::SecretKey());
     std::array<typename TFHEpp::lvl1param::T, TFHEpp::lvl1param::n> pmu1, pmu0;
     for (int j = 0; j < TFHEpp::lvl1param::n; j++)
-        pmu1[j] = binary(engine) ? TFHEpp::lvl1param::μ : -TFHEpp::lvl1param::μ;
+        pmu1[j] = binary(engine) ? TFHEpp::lvl1param::mu : -TFHEpp::lvl1param::mu;
     for (int j = 0; j < TFHEpp::lvl1param::n; j++)
-        pmu0[j] = binary(engine) ? TFHEpp::lvl1param::μ : -TFHEpp::lvl1param::μ;
+        pmu0[j] = binary(engine) ? TFHEpp::lvl1param::mu : -TFHEpp::lvl1param::mu;
     TFHEpp::TRLWE<TFHEpp::lvl1param> c0 =
         TFHEpp::trlweSymEncrypt<TFHEpp::lvl1param>(pmu0, TFHEpp::lvl1param::α,
                                                    sk->key.lvl1);
@@ -139,7 +139,7 @@ void BM_ExternalProduct(benchmark::State& state)
     const std::unique_ptr<TFHEpp::SecretKey> sk(new TFHEpp::SecretKey());
     std::array<typename TFHEpp::lvl1param::T, TFHEpp::lvl1param::n> pmu1, pmu0;
     for (int j = 0; j < TFHEpp::lvl1param::n; j++)
-        pmu1[j] = binary(engine) ? TFHEpp::lvl1param::μ : -TFHEpp::lvl1param::μ;
+        pmu1[j] = binary(engine) ? TFHEpp::lvl1param::mu : -TFHEpp::lvl1param::mu;
     TFHEpp::TRLWE<TFHEpp::lvl1param> c0 =
         TFHEpp::trlweSymEncrypt<TFHEpp::lvl1param>(pmu0, TFHEpp::lvl1param::α,
                                                    sk->key.lvl1);

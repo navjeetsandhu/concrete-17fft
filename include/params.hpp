@@ -203,9 +203,9 @@ using relinKeyFFT = std::array<TRLWEInFD<P>, P::l>;
 #define TFHEPP_EXPLICIT_INSTANTIATION_SUBSET_KEY_SWITCH_TO_TRLWE(fun) \
     fun(lvl21param);
 #define TFHEPP_EXPLICIT_INSTANTIATION_GATE_IKSBR(fun) \
-    fun(lvl10param, lvl01param, lvl1param::μ);
+    fun(lvl10param, lvl01param, lvl1param::mu);
 #define TFHEPP_EXPLICIT_INSTANTIATION_GATE_BRIKS(fun) \
-    fun(lvl01param, lvl1param::μ, lvl10param);
+    fun(lvl01param, lvl1param::mu, lvl10param);
 #define TFHEPP_EXPLICIT_INSTANTIATION_GATE(fun) \
     fun(lvl10param, lvl01param);                \
     fun(lvl10param, lvl02param);                \

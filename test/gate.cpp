@@ -150,23 +150,23 @@ void RunTest()
                 ek);
         Test<P>("COPY", TFHEpp::HomCOPY<P>, CopyChegk, p, cres, c, kNumTests,
                 *sk, ek);
-        Test<P>("NAND", TFHEpp::HomNAND<lvl01param, lvl1param::μ, lvl10param>,
+        Test<P>("NAND", TFHEpp::HomNAND<lvl01param, lvl1param::mu, lvl10param>,
                 NandChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("OR", TFHEpp::HomOR<lvl01param, lvl1param::μ, lvl10param>,
+        Test<P>("OR", TFHEpp::HomOR<lvl01param, lvl1param::mu, lvl10param>,
                 OrChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("ORYN", TFHEpp::HomORYN<lvl01param, lvl1param::μ, lvl10param>,
+        Test<P>("ORYN", TFHEpp::HomORYN<lvl01param, lvl1param::mu, lvl10param>,
                 OrYNChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("ORNY", TFHEpp::HomORNY<lvl01param, lvl1param::μ, lvl10param>,
+        Test<P>("ORNY", TFHEpp::HomORNY<lvl01param, lvl1param::mu, lvl10param>,
                 OrNYChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("AND", TFHEpp::HomAND<lvl01param, lvl1param::μ, lvl10param>,
+        Test<P>("AND", TFHEpp::HomAND<lvl01param, lvl1param::mu, lvl10param>,
                 AndChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("ANDYN", TFHEpp::HomANDYN<lvl01param, lvl1param::μ, lvl10param>,
+        Test<P>("ANDYN", TFHEpp::HomANDYN<lvl01param, lvl1param::mu, lvl10param>,
                 AndYNChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("ANDNY", TFHEpp::HomANDNY<lvl01param, lvl1param::μ, lvl10param>,
+        Test<P>("ANDNY", TFHEpp::HomANDNY<lvl01param, lvl1param::mu, lvl10param>,
                 AndNYChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("XOR", TFHEpp::HomXOR<lvl01param, lvl1param::μ, lvl10param>,
+        Test<P>("XOR", TFHEpp::HomXOR<lvl01param, lvl1param::mu, lvl10param>,
                 XorChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("XNOR", TFHEpp::HomXNOR<lvl01param, lvl1param::μ, lvl10param>,
+        Test<P>("XNOR", TFHEpp::HomXNOR<lvl01param, lvl1param::mu, lvl10param>,
                 XnorChegk, p, cres, c, kNumTests, *sk, ek);
         Test<P>("MUX", TFHEpp::HomMUX<P>, MuxChegk, p, cres, c, kNumTests, *sk,
                 ek);
@@ -183,23 +183,23 @@ void RunTest()
                 ek);
         Test<P>("COPY", TFHEpp::HomCOPY<P>, CopyChegk, p, cres, c, kNumTests,
                 *sk, ek);
-        Test<P>("NAND", TFHEpp::HomNAND<lvl10param, lvl01param, lvl1param::μ>,
+        Test<P>("NAND", TFHEpp::HomNAND<lvl10param, lvl01param, lvl1param::mu>,
                 NandChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("OR", TFHEpp::HomOR<lvl10param, lvl01param, lvl1param::μ>,
+        Test<P>("OR", TFHEpp::HomOR<lvl10param, lvl01param, lvl1param::mu>,
                 OrChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("ORYN", TFHEpp::HomORYN<lvl10param, lvl01param, lvl1param::μ>,
+        Test<P>("ORYN", TFHEpp::HomORYN<lvl10param, lvl01param, lvl1param::mu>,
                 OrYNChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("ORNY", TFHEpp::HomORNY<lvl10param, lvl01param, lvl1param::μ>,
+        Test<P>("ORNY", TFHEpp::HomORNY<lvl10param, lvl01param, lvl1param::mu>,
                 OrNYChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("AND", TFHEpp::HomAND<lvl10param, lvl01param, lvl1param::μ>,
+        Test<P>("AND", TFHEpp::HomAND<lvl10param, lvl01param, lvl1param::mu>,
                 AndChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("ANDYN", TFHEpp::HomANDYN<lvl10param, lvl01param, lvl1param::μ>,
+        Test<P>("ANDYN", TFHEpp::HomANDYN<lvl10param, lvl01param, lvl1param::mu>,
                 AndYNChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("ANDNY", TFHEpp::HomANDNY<lvl10param, lvl01param, lvl1param::μ>,
+        Test<P>("ANDNY", TFHEpp::HomANDNY<lvl10param, lvl01param, lvl1param::mu>,
                 AndNYChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("XOR", TFHEpp::HomXOR<lvl10param, lvl01param, lvl1param::μ>,
+        Test<P>("XOR", TFHEpp::HomXOR<lvl10param, lvl01param, lvl1param::mu>,
                 XorChegk, p, cres, c, kNumTests, *sk, ek);
-        Test<P>("XNOR", TFHEpp::HomXNOR<lvl10param, lvl01param, lvl1param::μ>,
+        Test<P>("XNOR", TFHEpp::HomXNOR<lvl10param, lvl01param, lvl1param::mu>,
                 XnorChegk, p, cres, c, kNumTests, *sk, ek);
         Test<P>("MUX", TFHEpp::HomMUX<P>, MuxChegk, p, cres, c, kNumTests, *sk,
                 ek);

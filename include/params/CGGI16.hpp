@@ -13,7 +13,7 @@ struct lvl0param {
         ErrorDistribution::ModularGaussian;
     static const inline double α = 2.44e-5;
     using T = uint32_t;
-    static constexpr T μ = 1U << 29;
+    static constexpr T mu = 1U << 29;
     static constexpr uint32_t plain_modulus = 2;
     static constexpr double Δ =
         static_cast<double>(1ULL << std::numeric_limits<T>::digits) /
@@ -31,7 +31,7 @@ struct lvlhalfparam {
         ErrorDistribution::ModularGaussian;
     static const inline double α = std::pow(2.0, -17);  // fresh noise
     using T = uint32_t;                                 // Torus representation
-    static constexpr T μ = 1U << (std::numeric_limits<T>::digits - 3);
+    static constexpr T mu = 1U << (std::numeric_limits<T>::digits - 3);
     static constexpr uint32_t plain_modulus = 8;
     static constexpr double Δ =
         static_cast<double>(1ULL << std::numeric_limits<T>::digits) /
@@ -51,7 +51,7 @@ struct lvl1param {
         ErrorDistribution::ModularGaussian;
     static const inline double α = 3.73e-9;
     using T = uint32_t;
-    static constexpr T μ = 1U << 29;
+    static constexpr T mu = 1U << 29;
     static constexpr uint32_t plain_modulus = 2;
     static constexpr double Δ =
         static_cast<double>(1ULL << std::numeric_limits<T>::digits) /
@@ -71,9 +71,9 @@ struct lvl2param {
         ErrorDistribution::ModularGaussian;
     static const inline double α = std::pow(2.0, -44);
     using T = uint64_t;
-    static constexpr T μ = 1ULL << 61;
+    static constexpr T mu = 1ULL << 61;
     static constexpr uint32_t plain_modulus = 8;
-    static constexpr double Δ = μ;
+    static constexpr double Δ = mu;
 };
 
 // Dummy
@@ -91,7 +91,7 @@ struct lvl3param {
         ErrorDistribution::ModularGaussian;
     static const inline double α = std::pow(2.0, -47);  // fresh noise
     using T = uint64_t;                                 // Torus representation
-    static constexpr T μ = 1ULL << 61;
+    static constexpr T mu = 1ULL << 61;
     static constexpr uint32_t plain_modulusbit = 31;
     static constexpr uint64_t plain_modulus = 1ULL << plain_modulusbit;
     static constexpr double Δ = 1ULL << (64 - plain_modulusbit - 1);

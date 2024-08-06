@@ -35,7 +35,7 @@ int main()
         for (uint8_t &p : i) p = binary(engine);
     for (int i = 0; i < num_test; i++)
         for (int j = 0; j < privksP::targetP::n; j++)
-            pmu[i][j] = pa[i][j] ? privksP::targetP::μ : -privksP::targetP::μ;
+            pmu[i][j] = pa[i][j] ? privksP::targetP::mu : -privksP::targetP::mu;
     for (int i = 0; i < num_test; i++) pones[i] = true;
     std::vector<TFHEpp::TRLWE<typename privksP::targetP>> ca(num_test);
     std::vector<TFHEpp::TLWE<typename iksP::domainP>> cones(num_test);

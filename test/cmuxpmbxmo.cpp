@@ -32,7 +32,7 @@ int main()
 
     for (int i = 0; i < num_test; i++)
         for (int j = 0; j < lvl1param::n; j++)
-            pmu1[i][j] = (p1[i][j] > 0) ? lvl1param::μ : -lvl1param::μ;
+            pmu1[i][j] = (p1[i][j] > 0) ? lvl1param::mu : -lvl1param::mu;
     std::vector<TFHEpp::BootstrappingKeyElementFFT<TFHEpp::lvl01param>,
                 TFHEpp::AlignedAllocator<
                     TFHEpp::BootstrappingKeyElementFFT<TFHEpp::lvl01param>, 64>>
@@ -72,5 +72,5 @@ int main()
     double elapsed =
         std::chrono::duration_cast<std::chrono::microseconds>(end - start)
             .count();
-    cout << elapsed / num_test << "μs" << endl;
+    cout << elapsed / num_test << "mus" << endl;
 }

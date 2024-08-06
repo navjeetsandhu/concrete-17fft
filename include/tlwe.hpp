@@ -119,7 +119,7 @@ std::vector<TLWE<P>> bootsSymEncrypt(const std::vector<uint8_t> &p,
     vector<TLWE<P>> c(p.size());
 #pragma omp parallel for
     for (int i = 0; i < p.size(); i++)
-        c[i] = tlweSymEncrypt<P>(p[i] ? P::μ : -P::μ, key);
+        c[i] = tlweSymEncrypt<P>(p[i] ? P::mu : -P::mu, key);
     return c;
 }
 

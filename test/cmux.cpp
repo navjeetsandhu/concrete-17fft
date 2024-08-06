@@ -31,10 +31,10 @@ int main()
 
     for (int i = 0; i < num_test; i++)
         for (int j = 0; j < lvl1param::n; j++)
-            pmu1[i][j] = (p1[i][j] > 0) ? lvl1param::μ : -lvl1param::μ;
+            pmu1[i][j] = (p1[i][j] > 0) ? lvl1param::mu : -lvl1param::mu;
     for (int i = 0; i < num_test; i++)
         for (int j = 0; j < lvl1param::n; j++)
-            pmu0[i][j] = (p0[i][j] > 0) ? lvl1param::μ : -lvl1param::μ;
+            pmu0[i][j] = (p0[i][j] > 0) ? lvl1param::mu : -lvl1param::mu;
     vector<TRGSWFFT<lvl1param>,
            TFHEpp::AlignedAllocator<TFHEpp::TRGSWFFT<TFHEpp::lvl1param>, 64>>
         cs(num_test);
@@ -69,5 +69,5 @@ int main()
     double elapsed =
         std::chrono::duration_cast<std::chrono::microseconds>(end - start)
             .count();
-    cout << elapsed / num_test << "μs" << endl;
+    cout << elapsed / num_test << "mus" << endl;
 }

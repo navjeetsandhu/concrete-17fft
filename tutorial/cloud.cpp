@@ -15,8 +15,8 @@ void HalfAdder(TFHEpp::TLWE<TFHEpp::lvl1param>& sum,
                const TFHEpp::TLWE<TFHEpp::lvl1param>& cb,
                const TFHEpp::EvalKey& ek)
 {
-    HomXOR<iksP, brP, brP::targetP::μ>(sum, ca, cb, ek);
-    HomAND<iksP, brP, brP::targetP::μ>(carry, ca, cb, ek);
+    HomXOR<iksP, brP, brP::targetP::mu>(sum, ca, cb, ek);
+    HomAND<iksP, brP, brP::targetP::mu>(carry, ca, cb, ek);
 }
 
 // elementary full comparator gate that is used to compare the i-th bit:
@@ -33,7 +33,7 @@ void FullAdder(TFHEpp::TLWE<TFHEpp::lvl1param>& sum,
     TFHEpp::TLWE<TFHEpp::lvl1param> hsum, hcarryab, hcarryabc;
     HalfAdder(hsum, hcarryab, cai, cbi, ek);
     HalfAdder(sum, hcarryabc, hsum, cci, ek);
-    TFHEpp::HomOR<iksP, brP, brP::targetP::μ>(carry, hcarryabc, hcarryab, ek);
+    TFHEpp::HomOR<iksP, brP, brP::targetP::mu>(carry, hcarryabc, hcarryab, ek);
 }
 
 int main()
@@ -78,7 +78,7 @@ int main()
             -1;  // NOT
         FullAdder(tmpsum, flagclient, clientcipher[i], cloudcipher[i],
                   flagclient, ek);
-        TFHEpp::HomANDYN<iksP, brP, brP::targetP::μ>(flagequiv, flagequiv,
+        TFHEpp::HomANDYN<iksP, brP, brP::targetP::mu>(flagequiv, flagequiv,
                                                      tmpsum, ek);
     }
 

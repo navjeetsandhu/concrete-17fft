@@ -47,8 +47,8 @@ int main()
     for (int i = 0; i < num_trlwe; i++)
         for (int j = 0; j < ksP::domainP::n; j++)
             pmu[i][j] = pmemory[i][j]
-                            ? 2 * ksP::domainP::μ
-                            : -2 * ksP::domainP::μ;  // This will increase noise
+                            ? 2 * ksP::domainP::mu
+                            : -2 * ksP::domainP::mu;  // This will increase noise
                                                      // torellance.
     for (uint8_t &p : address) p = binary(engine);
 
