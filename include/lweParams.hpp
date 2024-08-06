@@ -8,12 +8,12 @@
 namespace TFHEpp {
 struct portablelvl0param {
     std::uint32_t n;           // dimension
-    double α;                  // fresh noise
+    double alpha;                  // fresh noise
     std::uint32_t approx_bit;  // Torus representation bit size
 
     portablelvl0param()
         : n(lvl0param::n),
-          α(lvl0param::α),
+          alpha(lvl0param::alpha),
           approx_bit(std::numeric_limits<typename lvl0param::T>::digits)
     {
     }
@@ -21,12 +21,12 @@ struct portablelvl0param {
     template <class Archive>
     void serialize(Archive& archive)
     {
-        archive(n, α, approx_bit);
+        archive(n, alpha, approx_bit);
     }
 
     bool operator==(const portablelvl0param& in) const
     {
-        return (n == in.n) && (α == in.α) && (approx_bit == in.approx_bit);
+        return (n == in.n) && (alpha == in.alpha) && (approx_bit == in.approx_bit);
     };
 };
 
@@ -37,7 +37,7 @@ struct portablelvl1param {
     std::uint32_t l;
     std::uint32_t Bgbit;
     std::uint32_t Bg;
-    double α;                  // fresh noise
+    double alpha;                  // fresh noise
     std::uint32_t approx_bit;  // Torus representation bit size
 
     portablelvl1param()
@@ -71,7 +71,7 @@ struct portablelvl2param {
     std::uint32_t l;
     std::uint32_t Bgbit;
     std::uint32_t Bg;
-    // double α;                  // fresh noise
+    // double alpha;                  // fresh noise
     std::uint32_t approx_bit;  // Torus representation bit size
 
     portablelvl2param()
@@ -80,7 +80,7 @@ struct portablelvl2param {
           l(lvl2param::l),
           Bgbit(lvl2param::Bgbit),
           Bg(lvl2param::Bg),
-          //   α(lvl2param::α),
+          //   alpha(lvl2param::alpha),
           approx_bit(std::numeric_limits<typename lvl2param::T>::digits)
     {
     }
@@ -94,7 +94,7 @@ struct portablelvl2param {
     bool operator==(const portablelvl2param& in) const
     {
         return (nbit == in.nbit) && (n == in.n) && (l == in.l) &&
-               (Bgbit == in.Bgbit) && (Bg == in.Bg)  //&& (α == in.α)
+               (Bgbit == in.Bgbit) && (Bg == in.Bg)  //&& (alpha == in.alpha)
                && (approx_bit == in.approx_bit);
     };
 };
@@ -104,24 +104,24 @@ struct portablelvl10param {
     std::uint32_t t;  // number of addition in keyswitching
     std::uint32_t
         basebit;  // how many bit should be encrypted in keyswitching key
-    double α;     // key noise
+    double alpha;     // key noise
 
     portablelvl10param()
         : t(lvl10param::t),
           basebit(lvl10param::basebit),
-          α(lvl10param::targetP::α)
+          alpha(lvl10param::targetP::alpha)
     {
     }
 
     template <class Archive>
     void serialize(Archive& archive)
     {
-        archive(t, basebit, α);
+        archive(t, basebit, alpha);
     }
 
     bool operator==(const portablelvl10param& in) const
     {
-        return (t == in.t) && (basebit == in.basebit) && (α == in.α);
+        return (t == in.t) && (basebit == in.basebit) && (alpha == in.alpha);
     };
 };
 
@@ -129,24 +129,24 @@ struct portablelvl20param {
     std::uint32_t t;  // number of addition in keyswitching
     std::uint32_t
         basebit;  // how many bit should be encrypted in keyswitching key
-    double α;     // key noise
+    double alpha;     // key noise
 
     portablelvl20param()
         : t(lvl20param::t),
           basebit(lvl20param::basebit),
-          α(lvl20param::targetP::α)
+          alpha(lvl20param::targetP::alpha)
     {
     }
 
     template <class Archive>
     void serialize(Archive& archive)
     {
-        archive(t, basebit, α);
+        archive(t, basebit, alpha);
     }
 
     bool operator==(const portablelvl20param& in) const
     {
-        return (t == in.t) && (basebit == in.basebit) && (α == in.α);
+        return (t == in.t) && (basebit == in.basebit) && (alpha == in.alpha);
     }
 };
 
@@ -173,17 +173,17 @@ struct portablelvl22param {
     std::uint32_t t;  // number of addition in keyswitching
     std::uint32_t
         basebit;  // how many bit should be encrypted in keyswitching key
-    // double α;     // key noise
+    // double alpha;     // key noise
 
     portablelvl22param()
         : t(lvl22param::t),
-          basebit(lvl22param::basebit)  //, α(lvl22param::targetP::α)
+          basebit(lvl22param::basebit)  //, alpha(lvl22param::targetP::alpha)
     {
     }
 
     bool operator==(const portablelvl22param& in) const
     {
-        return (t == in.t) && (basebit == in.basebit);  // && (α == in.α);
+        return (t == in.t) && (basebit == in.basebit);  // && (alpha == in.alpha);
     }
 };
 
@@ -201,11 +201,11 @@ struct lweParams {
     template <class Archive>
     void serialize(Archive& archive)
     {
-        archive(lvl0.n, lvl0.α, lvl0.approx_bit, lvl1.nbit, lvl1.n, lvl1.l,
-                lvl1.Bgbit, lvl1.α, lvl1.approx_bit, lvl2.nbit, lvl2.n, lvl2.l,
-                lvl2.Bgbit, /*lvl2.α,*/ lvl2.approx_bit, lvl10.t, lvl10.basebit,
-                lvl10.α, lvl20.t, lvl20.basebit, lvl20.α, lvl21.t,
-                lvl21.basebit, lvl22.t, lvl22.basebit /*lvl22.α*/);
+        archive(lvl0.n, lvl0.alpha, lvl0.approx_bit, lvl1.nbit, lvl1.n, lvl1.l,
+                lvl1.Bgbit, lvl1.alpha, lvl1.approx_bit, lvl2.nbit, lvl2.n, lvl2.l,
+                lvl2.Bgbit, /*lvl2.alpha,*/ lvl2.approx_bit, lvl10.t, lvl10.basebit,
+                lvl10.alpha, lvl20.t, lvl20.basebit, lvl20.alpha, lvl21.t,
+                lvl21.basebit, lvl22.t, lvl22.basebit /*lvl22.alpha*/);
     }
 
     // https://cpprefjp.github.io/lang/cpp20/consistent_comparison.html

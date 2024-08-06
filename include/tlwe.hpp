@@ -10,12 +10,12 @@
 
 namespace TFHEpp {
 template <class P>
-TLWE<P> tlweSymEncrypt(const typename P::T p, const double α, const Key<P> &key)
+TLWE<P> tlweSymEncrypt(const typename P::T p, const double alpha, const Key<P> &key)
 {
     std::uniform_int_distribution<typename P::T> Torusdist(
         0, std::numeric_limits<typename P::T>::max());
     TLWE<P> res = {};
-    res[P::k * P::n] = ModularGaussian<P>(p, α);
+    res[P::k * P::n] = ModularGaussian<P>(p, alpha);
     for (int k = 0; k < P::k; k++)
         for (int i = 0; i < P::n; i++) {
             res[k * P::n + i] = Torusdist(generator);
@@ -46,16 +46,16 @@ template <class P>
 TLWE<P> tlweSymEncrypt(const typename P::T p, const Key<P> &key)
 {
     if constexpr (P::errordist == ErrorDistribution::ModularGaussian)
-        return tlweSymEncrypt<P>(p, P::α, key);
+        return tlweSymEncrypt<P>(p, P::alpha, key);
     else
         return tlweSymEncrypt<P>(p, P::η, key);
 }
 
 template <class P>
-TLWE<P> tlweSymIntEncrypt(const typename P::T p, const double α,
+TLWE<P> tlweSymIntEncrypt(const typename P::T p, const double alpha,
                           const Key<P> &key)
 {
-    return tlweSymEncrypt<P>(static_cast<typename P::T>(p * P::Δ), α, key);
+    return tlweSymEncrypt<P>(static_cast<typename P::T>(p * P::Δ), alpha, key);
 }
 
 template <class P>
@@ -69,7 +69,7 @@ template <class P>
 TLWE<P> tlweSymIntEncrypt(const typename P::T p, const Key<P> &key)
 {
     if constexpr (P::errordist == ErrorDistribution::ModularGaussian)
-        return tlweSymIntEncrypt<P>(p, P::α, key);
+        return tlweSymIntEncrypt<P>(p, P::alpha, key);
     else
         return tlweSymIntEncrypt<P>(p, P::η, key);
 }

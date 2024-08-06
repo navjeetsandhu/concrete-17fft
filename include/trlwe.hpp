@@ -5,12 +5,12 @@
 
 namespace TFHEpp {
 template <class P>
-TRLWE<P> trlweSymEncryptZero(const double α, const Key<P> &key)
+TRLWE<P> trlweSymEncryptZero(const double alpha, const Key<P> &key)
 {
     std::uniform_int_distribution<typename P::T> Torusdist(
         0, std::numeric_limits<typename P::T>::max());
     TRLWE<P> c;
-    for (typename P::T &i : c[P::k]) i = ModularGaussian<P>(0, α);
+    for (typename P::T &i : c[P::k]) i = ModularGaussian<P>(0, alpha);
     for (int k = 0; k < P::k; k++) {
         for (typename P::T &i : c[k]) i = Torusdist(generator);
         std::array<typename P::T, P::n> partkey;
@@ -45,7 +45,7 @@ template <class P>
 TRLWE<P> trlweSymEncryptZero(const Key<P> &key)
 {
     if constexpr (P::errordist == ErrorDistribution::ModularGaussian)
-        return trlweSymEncryptZero<P>(P::α, key);
+        return trlweSymEncryptZero<P>(P::alpha, key);
     else
         return trlweSymEncryptZero<P>(P::η, key);
 }
@@ -92,9 +92,9 @@ TRLWERAINTT<P> trlwerainttSymEncryptZero(const uint η, const Key<P> &key)
 
 template <class P>
 TRLWE<P> trlweSymEncrypt(const std::array<typename P::T, P::n> &p,
-                         const double α, const Key<P> &key)
+                         const double alpha, const Key<P> &key)
 {
-    TRLWE<P> c = trlweSymEncryptZero<P>(α, key);
+    TRLWE<P> c = trlweSymEncryptZero<P>(alpha, key);
     for (int i = 0; i < P::n; i++) c[P::k][i] += p[i];
     return c;
 }
@@ -113,7 +113,7 @@ TRLWE<P> trlweSymEncrypt(const std::array<typename P::T, P::n> &p,
                          const Key<P> &key)
 {
     if constexpr (P::errordist == ErrorDistribution::ModularGaussian)
-        return trlweSymEncrypt<P>(p, P::α, key);
+        return trlweSymEncrypt<P>(p, P::alpha, key);
     else
         return trlweSymEncrypt<P>(p, P::η, key);
 }
@@ -137,9 +137,9 @@ TRLWERAINTT<P> trlwerainttSymEncrypt(const Polynomial<P> &p, const uint η,
 
 template <class P>
 TRLWE<P> trlweSymIntEncrypt(const std::array<typename P::T, P::n> &p,
-                            const double α, const Key<P> &key)
+                            const double alpha, const Key<P> &key)
 {
-    TRLWE<P> c = trlweSymEncryptZero<P>(α, key);
+    TRLWE<P> c = trlweSymEncryptZero<P>(alpha, key);
     for (int i = 0; i < P::n; i++)
         c[P::k][i] += static_cast<typename P::T>(P::Δ * p[i]);
     return c;
@@ -160,7 +160,7 @@ TRLWE<P> trlweSymIntEncrypt(const std::array<typename P::T, P::n> &p,
                             const Key<P> &key)
 {
     if constexpr (P::errordist == ErrorDistribution::ModularGaussian)
-        return trlweSymIntEncrypt<P>(p, P::α, key);
+        return trlweSymIntEncrypt<P>(p, P::alpha, key);
     else
         return trlweSymIntEncrypt<P>(p, P::η, key);
 }

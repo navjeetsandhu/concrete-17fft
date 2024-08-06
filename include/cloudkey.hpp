@@ -25,15 +25,15 @@ void bkgen(BootstrappingKey<P>& bk, const Key<typename P::domainP>& domainkey,
         plainpoly[0] =
             static_cast<int32_t>(domainkey[2 * i] * domainkey[2 * i + 1]);
         bk[i][0] = trgswSymEncrypt<typename P::targetP>(
-            plainpoly, P::targetP::α, targetkey);
+            plainpoly, P::targetP::alpha, targetkey);
         plainpoly[0] =
             static_cast<int32_t>(domainkey[2 * i] * (1 - domainkey[2 * i + 1]));
         bk[i][1] = trgswSymEncrypt<typename P::targetP>(
-            plainpoly, P::targetP::α, targetkey);
+            plainpoly, P::targetP::alpha, targetkey);
         plainpoly[0] =
             static_cast<int32_t>((1 - domainkey[2 * i]) * domainkey[2 * i + 1]);
         bk[i][2] = trgswSymEncrypt<typename P::targetP>(
-            plainpoly, P::targetP::α, targetkey);
+            plainpoly, P::targetP::alpha, targetkey);
     }
 #else
     for (int i = 0; i < P::domainP::k * P::domainP::n; i++) {
@@ -69,15 +69,15 @@ void bkfftgen(BootstrappingKeyFFT<P>& bkfft,
         plainpoly[0] =
             static_cast<int32_t>(domainkey[2 * i] * domainkey[2 * i + 1]);
         bkfft[i][0] = trgswfftSymEncrypt<typename P::targetP>(
-            plainpoly, P::targetP::α, targetkey);
+            plainpoly, P::targetP::alpha, targetkey);
         plainpoly[0] =
             static_cast<int32_t>(domainkey[2 * i] * (1 - domainkey[2 * i + 1]));
         bkfft[i][1] = trgswfftSymEncrypt<typename P::targetP>(
-            plainpoly, P::targetP::α, targetkey);
+            plainpoly, P::targetP::alpha, targetkey);
         plainpoly[0] =
             static_cast<int32_t>((1 - domainkey[2 * i]) * domainkey[2 * i + 1]);
         bkfft[i][2] = trgswfftSymEncrypt<typename P::targetP>(
-            plainpoly, P::targetP::α, targetkey);
+            plainpoly, P::targetP::alpha, targetkey);
     }
 #else
     for (int i = 0; i < P::domainP::k * P::domainP::n; i++) {

@@ -10,7 +10,7 @@ void BM_TRGSWenc(benchmark::State& state)
     TFHEpp::TRGSWFFT<TFHEpp::lvl1param> res;
     for (auto _ : state)
         res = TFHEpp::trgswfftSymEncrypt<TFHEpp::lvl1param>(
-            {}, TFHEpp::lvl1param::α, sk->key.lvl1);
+            {}, TFHEpp::lvl1param::alpha, sk->key.lvl1);
     ;
 }
 
@@ -25,10 +25,10 @@ void BM_HomGate(benchmark::State& state)
     ek.emplaceiksk<TFHEpp::lvl10param>(*sk);
     TFHEpp::TLWE<TFHEpp::lvl0param> ca =
         TFHEpp::tlweSymEncrypt<TFHEpp::lvl0param>(
-            binary(engine), TFHEpp::lvl0param::α, sk->key.lvl0);
+            binary(engine), TFHEpp::lvl0param::alpha, sk->key.lvl0);
     TFHEpp::TLWE<TFHEpp::lvl0param> cb =
         TFHEpp::tlweSymEncrypt<TFHEpp::lvl0param>(
-            binary(engine), TFHEpp::lvl0param::α, sk->key.lvl0);
+            binary(engine), TFHEpp::lvl0param::alpha, sk->key.lvl0);
     TFHEpp::TLWE<TFHEpp::lvl0param> res;
     for (auto _ : state) TFHEpp::HomNAND<TFHEpp::lvl0param>(res, ca, cb, ek);
 }
@@ -44,13 +44,13 @@ void BM_HomMUX(benchmark::State& state)
     ek.emplaceiksk<TFHEpp::lvl10param>(*sk);
     TFHEpp::TLWE<TFHEpp::lvl0param> ca =
         TFHEpp::tlweSymEncrypt<TFHEpp::lvl0param>(
-            binary(engine), TFHEpp::lvl0param::α, sk->key.lvl0);
+            binary(engine), TFHEpp::lvl0param::alpha, sk->key.lvl0);
     TFHEpp::TLWE<TFHEpp::lvl0param> cb =
         TFHEpp::tlweSymEncrypt<TFHEpp::lvl0param>(
-            binary(engine), TFHEpp::lvl0param::α, sk->key.lvl0);
+            binary(engine), TFHEpp::lvl0param::alpha, sk->key.lvl0);
     TFHEpp::TLWE<TFHEpp::lvl0param> cs =
         TFHEpp::tlweSymEncrypt<TFHEpp::lvl0param>(
-            binary(engine), TFHEpp::lvl0param::α, sk->key.lvl0);
+            binary(engine), TFHEpp::lvl0param::alpha, sk->key.lvl0);
     TFHEpp::TLWE<TFHEpp::lvl0param> res;
     for (auto _ : state) TFHEpp::HomMUX<TFHEpp::lvl0param>(res, cs, ca, cb, ek);
 }
@@ -65,7 +65,7 @@ void BM_TLWE2TRLWE(benchmark::State& state)
     ek.emplacebkfft<TFHEpp::lvl01param>(*sk);
     TFHEpp::TLWE<TFHEpp::lvl0param> ca =
         TFHEpp::tlweSymEncrypt<TFHEpp::lvl0param>(
-            binary(engine), TFHEpp::lvl0param::α, sk->key.lvl0);
+            binary(engine), TFHEpp::lvl0param::alpha, sk->key.lvl0);
     TFHEpp::TRLWE<TFHEpp::lvl1param> res;
     for (auto _ : state)
         TFHEpp::BlindRotate<TFHEpp::lvl01param>(
@@ -83,7 +83,7 @@ void BM_IKS(benchmark::State& state)
     ek.emplaceiksk<TFHEpp::lvl10param>(*sk);
     TFHEpp::TLWE<TFHEpp::lvl1param> ca =
         TFHEpp::tlweSymEncrypt<TFHEpp::lvl1param>(
-            binary(engine), TFHEpp::lvl1param::α, sk->key.lvl1);
+            binary(engine), TFHEpp::lvl1param::alpha, sk->key.lvl1);
     TFHEpp::TLWE<TFHEpp::lvl0param> res;
     for (auto _ : state)
         TFHEpp::IdentityKeySwitch<TFHEpp::lvl10param>(res, ca, *ek.iksklvl10);
@@ -99,7 +99,7 @@ void BM_SEI(benchmark::State& state)
     for (int j = 0; j < TFHEpp::lvl1param::n; j++)
         pmu[j] = binary(engine) ? TFHEpp::lvl1param::mu : -TFHEpp::lvl1param::mu;
     TFHEpp::TRLWE<TFHEpp::lvl1param> ca =
-        TFHEpp::trlweSymEncrypt<TFHEpp::lvl1param>(pmu, TFHEpp::lvl1param::α,
+        TFHEpp::trlweSymEncrypt<TFHEpp::lvl1param>(pmu, TFHEpp::lvl1param::alpha,
                                                    sk->key.lvl1);
     TFHEpp::TLWE<TFHEpp::lvl1param> res;
     for (auto _ : state)
@@ -118,15 +118,15 @@ void BM_CMUX(benchmark::State& state)
     for (int j = 0; j < TFHEpp::lvl1param::n; j++)
         pmu0[j] = binary(engine) ? TFHEpp::lvl1param::mu : -TFHEpp::lvl1param::mu;
     TFHEpp::TRLWE<TFHEpp::lvl1param> c0 =
-        TFHEpp::trlweSymEncrypt<TFHEpp::lvl1param>(pmu0, TFHEpp::lvl1param::α,
+        TFHEpp::trlweSymEncrypt<TFHEpp::lvl1param>(pmu0, TFHEpp::lvl1param::alpha,
                                                    sk->key.lvl1);
     TFHEpp::TRLWE<TFHEpp::lvl1param> c1 =
-        TFHEpp::trlweSymEncrypt<TFHEpp::lvl1param>(pmu1, TFHEpp::lvl1param::α,
+        TFHEpp::trlweSymEncrypt<TFHEpp::lvl1param>(pmu1, TFHEpp::lvl1param::alpha,
                                                    sk->key.lvl1);
     const TFHEpp::Polynomial<TFHEpp::lvl1param> plainpoly = {binary(engine)};
     TFHEpp::TRGSWFFT<TFHEpp::lvl1param> cs =
         TFHEpp::trgswfftSymEncrypt<TFHEpp::lvl1param>(
-            plainpoly, TFHEpp::lvl1param::α, sk->key.lvl1);
+            plainpoly, TFHEpp::lvl1param::alpha, sk->key.lvl1);
     TFHEpp::TRLWE<TFHEpp::lvl1param> res;
     for (auto _ : state) TFHEpp::CMUXFFT<TFHEpp::lvl1param>(res, cs, c1, c0);
 }
@@ -141,12 +141,12 @@ void BM_ExternalProduct(benchmark::State& state)
     for (int j = 0; j < TFHEpp::lvl1param::n; j++)
         pmu1[j] = binary(engine) ? TFHEpp::lvl1param::mu : -TFHEpp::lvl1param::mu;
     TFHEpp::TRLWE<TFHEpp::lvl1param> c0 =
-        TFHEpp::trlweSymEncrypt<TFHEpp::lvl1param>(pmu0, TFHEpp::lvl1param::α,
+        TFHEpp::trlweSymEncrypt<TFHEpp::lvl1param>(pmu0, TFHEpp::lvl1param::alpha,
                                                    sk->key.lvl1);
     const TFHEpp::Polynomial<TFHEpp::lvl1param> plainpoly = {binary(engine)};
     TFHEpp::TRGSWFFT<TFHEpp::lvl1param> cs =
         TFHEpp::trgswfftSymEncrypt<TFHEpp::lvl1param>(
-            plainpoly, TFHEpp::lvl1param::α, sk->key.lvl1);
+            plainpoly, TFHEpp::lvl1param::alpha, sk->key.lvl1);
     TFHEpp::TRLWE<TFHEpp::lvl1param> res;
     for (auto _ : state)
         TFHEpp::trgswfftExternalProduct<TFHEpp::lvl1param>(res, c0, cs);
@@ -167,7 +167,7 @@ void BM_CB(benchmark::State& state)
     ek.emplaceprivksk4cb<privksP>(*sk);
     TFHEpp::TLWE<TFHEpp::lvl1param> ca =
         TFHEpp::tlweSymEncrypt<TFHEpp::lvl1param>(
-            binary(engine), TFHEpp::lvl1param::α, sk->key.lvl1);
+            binary(engine), TFHEpp::lvl1param::alpha, sk->key.lvl1);
     TFHEpp::TRGSWFFT<TFHEpp::lvl1param> res;
     for (auto _ : state)
         TFHEpp::CircuitBootstrappingFFT<iksP, bkP, privksP>(res, ca, ek);
