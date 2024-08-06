@@ -73,7 +73,7 @@ To use this library, add `-DUSE_HEXL=on` to the CMake option.
 
 Following Code measure how many time homomorphic NAND takes on your computer with TFHEpp. 
 ```
-git clone https://github.com/virtualsecureplatform/TFHEpp
+git clonehttps://github.com/navjeetsandhu/TFHEpp.git
 cd TFHEpp
 mkdir build
 cd build
