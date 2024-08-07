@@ -232,7 +232,7 @@ template <class P>
 constexpr std::array<typename P::T, P::l> hgen()
 {
     std::array<typename P::T, P::l> h{};
-    if constexpr (hasq<P>::l)
+    if constexpr (hasq<P>::value)
         for (int i = 0; i < P::l; i++)
             h[i] = (P::q + (1ULL << ((i + 1) * P::Bgbit - 1))) >>
                    ((i + 1) * P::Bgbit);
