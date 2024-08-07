@@ -32,8 +32,11 @@ template <typename T>
 struct hasq<T, std::void_t<decltype(T::q)>> : std::true_type {};
 
 
-template <typename T>
-concept hasqbit = requires { T::qbit; };
+template<typename T, typename = void>
+struct hasqbit : std::false_type {};
+
+template<typename T>
+struct hasqbit<T, std::void_t<decltype(T::qbit)>> : std::true_type {};
 
 // https://github.com/zhourrr/aligned-memory-allocator/blob/main/aligned_allocator.h
 // A minimal implementation of an allocator for C++ Standard Library, which
