@@ -9,7 +9,7 @@ int main()
     // static_assert(TFHEpp::hasq<TFHEpp::lvl1param>);
     // std::cout<< TFHEpp::lvl1param::q<<std::endl;
     constexpr uint32_t num_test = 1000;
-
+    if constexpr (TFHEpp::hasq<TFHEpp::lvl1param>::value)
         for (int test = 0; test < num_test; test++) {
             std::random_device seed_gen;
             std::default_random_engine engine(seed_gen());
@@ -22,7 +22,7 @@ int main()
             std::array<typename TFHEpp::lvl1param::T, TFHEpp::lvl1param::n>
                 pmu = {};
             for (int i = 0; i < TFHEpp::lvl1param::n; i++)
-                pmu[i] = p[i] ? TFHEpp::lvl1param::mu : -TFHEpp::lvl1param::mu;
+                pmu[i] = p[i] ? TFHEpp::lvl1param::μ : -TFHEpp::lvl1param::μ;
             TFHEpp::TRLWERAINTT<TFHEpp::lvl1param> craintt =
                 TFHEpp::trlwerainttSymEncrypt<TFHEpp::lvl1param>(pmu, 3,
                                                                  key.lvl1);
@@ -44,6 +44,7 @@ int main()
             for (int i = 0; i < TFHEpp::lvl1param::n; i++)
                 assert(p[i] == p2[i]);
         }
-
+    else
+        std::cout << "Nothing to do" << std::endl;
     std::cout << "Passed" << std::endl;
 }
