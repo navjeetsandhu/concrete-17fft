@@ -55,14 +55,14 @@ template <class P>
 TLWE<P> tlweSymIntEncrypt(const typename P::T p, const double alpha,
                           const Key<P> &key)
 {
-    return tlweSymEncrypt<P>(static_cast<typename P::T>(p * P::Δ), alpha, key);
+    return tlweSymEncrypt<P>(static_cast<typename P::T>(p * P::delta), alpha, key);
 }
 
 template <class P>
 TLWE<P> tlweSymIntEncrypt(const typename P::T p, const uint η,
                           const Key<P> &key)
 {
-    return tlweSymEncrypt<P>(static_cast<typename P::T>(p * P::Δ), η, key);
+    return tlweSymEncrypt<P>(static_cast<typename P::T>(p * P::delta), η, key);
 }
 
 template <class P>
@@ -96,13 +96,13 @@ bool tlweSymDecrypt(const TLWE<P> &c, const Key<P> &key)
 template <class P, const uint plain_modulus>
 typename P::T tlweSymIntDecrypt(const TLWE<P> &c, const Key<P> &key)
 {
-    constexpr double Δ =
+    constexpr double delta =
         2 *
         static_cast<double>(
             1ULL << (std::numeric_limits<typename P::T>::digits - 1)) /
         plain_modulus;
     const typename P::T phase = tlweSymPhase<P>(c, key);
-    typename P::T res = static_cast<typename P::T>(std::round(phase / Δ));
+    typename P::T res = static_cast<typename P::T>(std::round(phase / delta));
     return res >= plain_modulus / 2 ? res - plain_modulus : res;
 }
 

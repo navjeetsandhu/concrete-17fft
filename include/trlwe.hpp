@@ -141,7 +141,7 @@ TRLWE<P> trlweSymIntEncrypt(const std::array<typename P::T, P::n> &p,
 {
     TRLWE<P> c = trlweSymEncryptZero<P>(alpha, key);
     for (int i = 0; i < P::n; i++)
-        c[P::k][i] += static_cast<typename P::T>(P::Δ * p[i]);
+        c[P::k][i] += static_cast<typename P::T>(P::delta * p[i]);
     return c;
 }
 
@@ -151,7 +151,7 @@ TRLWE<P> trlweSymIntEncrypt(const std::array<typename P::T, P::n> &p,
 {
     TRLWE<P> c = trlweSymEncryptZero<P>(η, key);
     for (int i = 0; i < P::n; i++)
-        c[P::k][i] += static_cast<typename P::T>(P::Δ * p[i]);
+        c[P::k][i] += static_cast<typename P::T>(P::delta * p[i]);
     return c;
 }
 
@@ -209,7 +209,7 @@ Polynomial<P> trlweSymIntDecrypt(const TRLWE<P> &c, const Key<P> &key)
 
     Polynomial<P> p;
     for (int i = 0; i < P::n; i++)
-        p[i] = static_cast<typename P::T>(std::round(phase[i] / P::Δ)) %
+        p[i] = static_cast<typename P::T>(std::round(phase[i] / P::delta)) %
                P::plain_modulus;
     return p;
 }

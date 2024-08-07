@@ -20,7 +20,7 @@ struct lvl0param {
     static constexpr std::make_signed_t<T> mu =
         1U << (std::numeric_limits<T>::digits - 3);
     static constexpr uint32_t plain_modulus = 8;
-    static constexpr double Δ =
+    static constexpr double delta =
         static_cast<double>(1ULL << std::numeric_limits<T>::digits) /
         plain_modulus;
 };
@@ -38,7 +38,7 @@ struct lvlhalfparam {
     using T = uint32_t;                                 // Torus representation
     static constexpr T mu = 1U << (std::numeric_limits<T>::digits - 3);
     static constexpr uint32_t plain_modulus = 8;
-    static constexpr double Δ =
+    static constexpr double delta =
         static_cast<double>(1ULL << std::numeric_limits<T>::digits) /
         plain_modulus;
 };
@@ -63,7 +63,7 @@ struct lvl1param {
     static constexpr std::make_signed_t<T> mu =
         1U << (std::numeric_limits<T>::digits - 3);
     static constexpr uint32_t plain_modulus = 2;
-    static constexpr double Δ =
+    static constexpr double delta =
         static_cast<double>(1ULL << std::numeric_limits<T>::digits) /
         plain_modulus;
 };
@@ -86,7 +86,7 @@ struct lvl2param {
     static constexpr uint qbit = 48;
     static constexpr std::make_signed_t<T> mu = q / 8;
     static constexpr uint32_t plain_modulus = 8;
-    static constexpr double Δ = mu;
+    static constexpr double delta = mu;
 };
 
 // Dummy
@@ -107,7 +107,7 @@ struct lvl3param {
     static constexpr T mu = 1ULL << 61;
     static constexpr uint32_t plain_modulusbit = 31;
     static constexpr uint64_t plain_modulus = 1ULL << plain_modulusbit;
-    static constexpr double Δ = 1ULL << (64 - plain_modulusbit - 1);
+    static constexpr double delta = 1ULL << (64 - plain_modulusbit - 1);
 };
 
 // Key Switching parameters

@@ -137,7 +137,7 @@ void FFT_Processor_Spqlios::execute_direct_torus32_q(uint32_t *res, const double
     for (int32_t i = 0; i < N; i++) res[i] = uint32_t((int64_t(real_inout_direct[i])%q+q)%q);
 }
 
-void FFT_Processor_Spqlios::execute_direct_torus32_rescale(uint32_t *res, const double *a, const double Δ) {
+void FFT_Processor_Spqlios::execute_direct_torus32_rescale(uint32_t *res, const double *a, const double delta) {
     //TODO: parallelization
     static const double _2sN = double(2) / double(N);
     //for (int32_t i=0; i<N; i++) real_inout_direct[i]=a[i]*_2sn;
@@ -163,7 +163,7 @@ void FFT_Processor_Spqlios::execute_direct_torus32_rescale(uint32_t *res, const 
         );
     }
     fft(tables_direct, real_inout_direct);
-    for (int32_t i = 0; i < N; i++) res[i] = uint32_t(std::round(real_inout_direct[i]/(Δ/4)));
+    for (int32_t i = 0; i < N; i++) res[i] = uint32_t(std::round(real_inout_direct[i]/(delta/4)));
 }
 
 void FFT_Processor_Spqlios::execute_direct_torus64(uint64_t* res, const double* a) {
@@ -219,7 +219,7 @@ void FFT_Processor_Spqlios::execute_direct_torus64(uint64_t* res, const double* 
     #endif
 }
 
-void FFT_Processor_Spqlios::execute_direct_torus64_rescale(uint64_t* res, const double* a, const double Δ) {
+void FFT_Processor_Spqlios::execute_direct_torus64_rescale(uint64_t* res, const double* a, const double delta) {
     static const double _2sN = double(2)/double(N);
     //static const double _2p64 = pow(2.,64);
     //for (int i=0; i<N; i++) real_inout_direct[i]=a[i]*_2sn;
@@ -245,7 +245,7 @@ void FFT_Processor_Spqlios::execute_direct_torus64_rescale(uint64_t* res, const 
 		);
     }
     fft(tables_direct,real_inout_direct); 
-    for (int i=0; i<N; i++) res[i] = uint64_t(std::round(real_inout_direct[i]/(Δ/4)));
+    for (int i=0; i<N; i++) res[i] = uint64_t(std::round(real_inout_direct[i]/(delta/4)));
 }
 
 FFT_Processor_Spqlios::~FFT_Processor_Spqlios() {

@@ -226,7 +226,7 @@ void FFT_Processor_Spqliox_AArch64::execute_direct_torus32(uint32_t *res,
 }
 
 void FFT_Processor_Spqliox_AArch64::execute_direct_torus32_rescale(
-    uint32_t *res, const double *a, const double Δ)
+    uint32_t *res, const double *a, const double delta)
 {
     const double *sit = a;
     const double *send = a + N;
@@ -236,7 +236,7 @@ void FFT_Processor_Spqliox_AArch64::execute_direct_torus32_rescale(
     fft_(dst, sit, send, bla, &tables_direct_, real_inout,
          table_negation_forward_.trig_tables);
     for (int32_t i = 0; i < N; i++)
-        res[i] = uint32_t(int64_t(real_inout[i] / (Δ / 4)));
+        res[i] = uint32_t(int64_t(real_inout[i] / (delta / 4)));
 }
 
 void FFT_Processor_Spqliox_AArch64::execute_direct_torus64(uint64_t *res,
