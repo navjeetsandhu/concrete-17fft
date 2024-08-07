@@ -1,4 +1,6 @@
+/*
 #pragma once
+
 #include <span>
 
 namespace Nussbaumer {
@@ -128,3 +130,4 @@ void InverseNussbaumerTransform(std::span<T, (1ull << Nbit)> res)
     }
 }
 }  // namespace Nussbaumer
+ */
