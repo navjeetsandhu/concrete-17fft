@@ -185,7 +185,7 @@ std::array<bool, P::n> trlweSymDecrypt(const TRLWE<P> &c, const Key<P> &key)
     Polynomial<P> phase = trlwePhase<P>(c, key);
 
     std::array<bool, P::n> p;
-    if constexpr (hasq<P>::p) {
+    if constexpr (hasq<P>::value) {
         for (int i = 0; i < P::n; i++) p[i] = (phase[i] % P::q) < P::q / 2;
     }
     else
