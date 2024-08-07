@@ -25,8 +25,12 @@ template <typename T>
 constexpr bool false_v = false;
 
 // https://qiita.com/negi-drums/items/a527c05050781a5af523
+template <typename T, typename = void>
+struct hasq : std::false_type {};
+
 template <typename T>
-concept hasq = requires { T::q; };
+struct hasq<T, std::void_t<decltype(T::q)>> : std::true_type {};
+
 
 template <typename T>
 concept hasqbit = requires { T::qbit; };

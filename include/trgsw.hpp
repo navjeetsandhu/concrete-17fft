@@ -232,7 +232,7 @@ template <class P>
 constexpr std::array<typename P::T, P::l> hgen()
 {
     std::array<typename P::T, P::l> h{};
-    if constexpr (hasq<P>)
+    if constexpr (hasq<P>::l)
         for (int i = 0; i < P::l; i++)
             h[i] = (P::q + (1ULL << ((i + 1) * P::Bgbit - 1))) >>
                    ((i + 1) * P::Bgbit);
@@ -407,7 +407,7 @@ template <class P>
 TRGSWRAINTT<P> trgswrainttSymEncrypt(const Polynomial<P> &p, const uint η,
                                      const Key<P> &key)
 {
-    if constexpr (hasq<P> && P::q == raintt::P) {
+    if constexpr (hasq<P>::p && P::q == raintt::P) {
         constexpr uint8_t remainder = ((P::nbit - 1) % 3) + 1;
         constexpr std::array<typename P::T, P::l> h = hgen<P>();
         TRGSWRAINTT<P> trgswraintt;
