@@ -64,7 +64,7 @@ public:
     }
 
     void execute_direct_torus32_rescale(uint32_t *res, const double *a,
-                                        const double Δ)
+                                        const double delta)
     {
         std::array<double, N> buf;
         for(int i = 0; i < N; i++) buf[i] = a[i];
@@ -73,8 +73,8 @@ public:
         for (int i = 0; i < Ns2; i++) {
             auto res_tmp =
                 std::complex<double>(buf[2*i], buf[2*i+1]) * std::conj(twist[i]) * _2sN;
-            res[i] = CAST_DOUBLE_TO_UINT32(res_tmp.real() / (Δ / 4));
-            res[i + Ns2] = CAST_DOUBLE_TO_UINT32(res_tmp.imag() / (Δ / 4));
+            res[i] = CAST_DOUBLE_TO_UINT32(res_tmp.real() / (delta / 4));
+            res[i + Ns2] = CAST_DOUBLE_TO_UINT32(res_tmp.imag() / (delta / 4));
         }
     }
 
@@ -118,7 +118,7 @@ public:
         }
     }
 
-    void execute_direct_torus64_rescale(uint64_t *res, const double *a, const double Δ)
+    void execute_direct_torus64_rescale(uint64_t *res, const double *a, const double delta)
     {
         std::array<double, N> buf;
         for(int i = 0; i < N; i++) buf[i] = a[i];
@@ -131,7 +131,7 @@ public:
             tmp[i] = res_tmp.real();
             tmp[i + Ns2] = res_tmp.imag();
         }
-        for (int i=0; i<N; i++) res[i] = uint64_t(std::round(tmp[i]/(Δ/4)));
+        for (int i=0; i<N; i++) res[i] = uint64_t(std::round(tmp[i]/(delta/4)));
     }
 
     // ~FFT_Processor_Concrete();
