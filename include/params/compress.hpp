@@ -56,7 +56,7 @@ struct lvl1param {
     static constexpr std::uint32_t Bg = 1 << Bgbit;
     static constexpr ErrorDistribution errordist =
         ErrorDistribution::CenteredBinomial;
-    static constexpr uint η = 3;
+    static constexpr uint eta = 3;
     using T = uint32_t;  // Torus representation
     static constexpr T q = 40960001;
     static constexpr uint qbit = 27;
@@ -80,7 +80,7 @@ struct lvl2param {
     static constexpr std::uint32_t Bg = 1 << Bgbit;
     static constexpr ErrorDistribution errordist =
         ErrorDistribution::CenteredBinomial;
-    static constexpr uint η = 3;
+    static constexpr uint eta = 3;
     using T = uint64_t;  // Torus representation
     static constexpr T q = 1ULL << 48;
     static constexpr uint qbit = 48;

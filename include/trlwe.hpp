@@ -23,13 +23,13 @@ TRLWE<P> trlweSymEncryptZero(const double alpha, const Key<P> &key)
 }
 
 template <class P>
-TRLWE<P> trlweSymEncryptZero(const uint η, const Key<P> &key)
+TRLWE<P> trlweSymEncryptZero(const uint eta, const Key<P> &key)
 {
     std::uniform_int_distribution<typename P::T> Torusdist(
         0, std::numeric_limits<typename P::T>::max());
     alignas(64) TRLWE<P> c;
     for (typename P::T &i : c[P::k])
-        i = (CenteredBinomial<P>(η) << std::numeric_limits<P>::digits) / P::q;
+        i = (CenteredBinomial<P>(eta) << std::numeric_limits<P>::digits) / P::q;
     for (int k = 0; k < P::k; k++) {
         for (typename P::T &i : c[k]) i = Torusdist(generator);
         alignas(64) std::array<typename P::T, P::n> partkey;
@@ -47,11 +47,11 @@ TRLWE<P> trlweSymEncryptZero(const Key<P> &key)
     if constexpr (P::errordist == ErrorDistribution::ModularGaussian)
         return trlweSymEncryptZero<P>(P::alpha, key);
     else
-        return trlweSymEncryptZero<P>(P::η, key);
+        return trlweSymEncryptZero<P>(P::eta, key);
 }
 
 template <class P>
-TRLWERAINTT<P> trlwerainttSymEncryptZero(const uint η, const Key<P> &key)
+TRLWERAINTT<P> trlwerainttSymEncryptZero(const uint eta, const Key<P> &key)
 {
     static_assert(P::q == raintt::P);
     static_assert(P::qbit == raintt::wordbits);
@@ -60,7 +60,7 @@ TRLWERAINTT<P> trlwerainttSymEncryptZero(const uint η, const Key<P> &key)
     TRLWERAINTT<P> c = {};
     {
         Polynomial<P> b;
-        for (typename P::T &i : b) i = CenteredBinomial<P>(η);
+        for (typename P::T &i : b) i = CenteredBinomial<P>(eta);
         raintt::TwistINTT<typename P::T, P::nbit, false>(
             c[P::k], b, (*raintttable)[1], (*raintttwist)[1]);
         for (int i = 0; i < P::n; i++)
@@ -100,10 +100,10 @@ TRLWE<P> trlweSymEncrypt(const std::array<typename P::T, P::n> &p,
 }
 
 template <class P>
-TRLWE<P> trlweSymEncrypt(const std::array<typename P::T, P::n> &p, const uint η,
+TRLWE<P> trlweSymEncrypt(const std::array<typename P::T, P::n> &p, const uint eta,
                          const Key<P> &key)
 {
-    TRLWE<P> c = trlweSymEncryptZero<P>(η, key);
+    TRLWE<P> c = trlweSymEncryptZero<P>(eta, key);
     for (int i = 0; i < P::n; i++) c[P::k][i] += p[i];
     return c;
 }
@@ -115,14 +115,14 @@ TRLWE<P> trlweSymEncrypt(const std::array<typename P::T, P::n> &p,
     if constexpr (P::errordist == ErrorDistribution::ModularGaussian)
         return trlweSymEncrypt<P>(p, P::alpha, key);
     else
-        return trlweSymEncrypt<P>(p, P::η, key);
+        return trlweSymEncrypt<P>(p, P::eta, key);
 }
 
 template <class P, bool modswitch = false>
-TRLWERAINTT<P> trlwerainttSymEncrypt(const Polynomial<P> &p, const uint η,
+TRLWERAINTT<P> trlwerainttSymEncrypt(const Polynomial<P> &p, const uint eta,
                                      const Key<P> &key)
 {
-    TRLWERAINTT<P> c = trlwerainttSymEncryptZero<P>(η, key);
+    TRLWERAINTT<P> c = trlwerainttSymEncryptZero<P>(eta, key);
     PolynomialRAINTT<P> pntt;
     raintt::TwistINTT<typename P::T, P::nbit, modswitch>(
         pntt, p, (*raintttable)[1], (*raintttwist)[1]);
@@ -147,9 +147,9 @@ TRLWE<P> trlweSymIntEncrypt(const std::array<typename P::T, P::n> &p,
 
 template <class P>
 TRLWE<P> trlweSymIntEncrypt(const std::array<typename P::T, P::n> &p,
-                            const uint η, const Key<P> &key)
+                            const uint eta, const Key<P> &key)
 {
-    TRLWE<P> c = trlweSymEncryptZero<P>(η, key);
+    TRLWE<P> c = trlweSymEncryptZero<P>(eta, key);
     for (int i = 0; i < P::n; i++)
         c[P::k][i] += static_cast<typename P::T>(P::delta * p[i]);
     return c;
@@ -162,7 +162,7 @@ TRLWE<P> trlweSymIntEncrypt(const std::array<typename P::T, P::n> &p,
     if constexpr (P::errordist == ErrorDistribution::ModularGaussian)
         return trlweSymIntEncrypt<P>(p, P::alpha, key);
     else
-        return trlweSymIntEncrypt<P>(p, P::η, key);
+        return trlweSymIntEncrypt<P>(p, P::eta, key);
 }
 
 template <class P>

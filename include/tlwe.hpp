@@ -25,12 +25,12 @@ TLWE<P> tlweSymEncrypt(const typename P::T p, const double alpha, const Key<P> &
 }
 
 template <class P>
-TLWE<P> tlweSymEncrypt(const typename P::T p, const uint η, const Key<P> &key)
+TLWE<P> tlweSymEncrypt(const typename P::T p, const uint eta, const Key<P> &key)
 {
     std::uniform_int_distribution<typename P::T> Torusdist(0, P::q - 1);
     TLWE<P> res = {};
     res[P::k * P::n] =
-        p + CenteredBinomial<P>(η)
+        p + CenteredBinomial<P>(eta)
         << (std::numeric_limits<typename P::T>::digits - P::qbit);
     for (int k = 0; k < P::k; k++)
         for (int i = 0; i < P::n; i++) {
@@ -48,7 +48,7 @@ TLWE<P> tlweSymEncrypt(const typename P::T p, const Key<P> &key)
     if constexpr (P::errordist == ErrorDistribution::ModularGaussian)
         return tlweSymEncrypt<P>(p, P::alpha, key);
     else
-        return tlweSymEncrypt<P>(p, P::η, key);
+        return tlweSymEncrypt<P>(p, P::eta, key);
 }
 
 template <class P>
@@ -59,10 +59,10 @@ TLWE<P> tlweSymIntEncrypt(const typename P::T p, const double alpha,
 }
 
 template <class P>
-TLWE<P> tlweSymIntEncrypt(const typename P::T p, const uint η,
+TLWE<P> tlweSymIntEncrypt(const typename P::T p, const uint eta,
                           const Key<P> &key)
 {
-    return tlweSymEncrypt<P>(static_cast<typename P::T>(p * P::delta), η, key);
+    return tlweSymEncrypt<P>(static_cast<typename P::T>(p * P::delta), eta, key);
 }
 
 template <class P>
@@ -71,7 +71,7 @@ TLWE<P> tlweSymIntEncrypt(const typename P::T p, const Key<P> &key)
     if constexpr (P::errordist == ErrorDistribution::ModularGaussian)
         return tlweSymIntEncrypt<P>(p, P::alpha, key);
     else
-        return tlweSymIntEncrypt<P>(p, P::η, key);
+        return tlweSymIntEncrypt<P>(p, P::eta, key);
 }
 
 template <class P>
