@@ -18,3 +18,4 @@ find "." -type f -exec sed -i '' 's/μ/mu/g' {} \;
 find "." -type f -exec sed -i '' 's/α/alpha/g' {} \;
 find "." -type f -exec sed -i '' 's/Δ/delta/g' {} \;
 find "." -type f -exec sed -i '' 's/η/eta/g' {} \;
+find "." -type f -exec sed -i '' 's/ā/aLong/g' {} \;
