@@ -23,13 +23,13 @@ void BlindRotate(TRLWE<typename P::targetP> &res,
                  const Polynomial<typename P::targetP> &testvector)
 {
     constexpr uint32_t bitwidth = bits_needed<num_out - 1>();
-    const uint32_t b̄ = 2 * P::targetP::n -
+    const uint32_t bLong = 2 * P::targetP::n -
                        ((tlwe[P::domainP::k * P::domainP::n] >>
                          (std::numeric_limits<typename P::domainP::T>::digits -
                           1 - P::targetP::nbit + bitwidth))
                         << bitwidth);
     res = {};
-    PolynomialMulByXai<typename P::targetP>(res[P::targetP::k], testvector, b̄);
+    PolynomialMulByXai<typename P::targetP>(res[P::targetP::k], testvector, bLong);
 #ifdef USE_KEY_BUNDLE
     alignas(64) std::array<TRGSWFFT<typename P::targetP>,
                            P::domainP::k * P::domainP::n / P::Addends>
@@ -77,13 +77,13 @@ void BlindRotate(TRLWE<typename P::targetP> &res,
                  const TRLWE<typename P::targetP> &testvector)
 {
     constexpr uint32_t bitwidth = bits_needed<num_out - 1>();
-    const uint32_t b̄ = 2 * P::targetP::n -
+    const uint32_t bLong = 2 * P::targetP::n -
                        ((tlwe[P::domainP::k * P::domainP::n] >>
                          (std::numeric_limits<typename P::domainP::T>::digits -
                           1 - P::targetP::nbit + bitwidth))
                         << bitwidth);
     for (int k = 0; k < P::targetP::k + 1; k++)
-        PolynomialMulByXai<typename P::targetP>(res[k], testvector[k], b̄);
+        PolynomialMulByXai<typename P::targetP>(res[k], testvector[k], bLong);
 #ifdef USE_KEY_BUNDLE
     alignas(64) std::array<TRGSWFFT<typename P::targetP>,
                            P::domainP::k * P::domainP::n / P::Addends>
@@ -132,13 +132,13 @@ void BlindRotate(TRLWE<typename P::targetP> &res,
                  const Polynomial<typename P::targetP> &testvector)
 {
     constexpr uint32_t bitwidth = bits_needed<num_out - 1>();
-    const uint32_t b̄ = 2 * P::targetP::n -
+    const uint32_t bLong = 2 * P::targetP::n -
                        ((tlwe[P::domainP::k * P::domainP::n] >>
                          (std::numeric_limits<typename P::domainP::T>::digits -
                           1 - P::targetP::nbit + bitwidth))
                         << bitwidth);
     res = {};
-    PolynomialMulByXai<typename P::targetP>(res[P::targetP::k], testvector, b̄);
+    PolynomialMulByXai<typename P::targetP>(res[P::targetP::k], testvector, bLong);
     for (int i = 0; i < P::domainP::k * P::domainP::n; i++) {
         constexpr typename P::domainP::T roundoffset =
             1ULL << (std::numeric_limits<typename P::domainP::T>::digits - 2 -
@@ -162,13 +162,13 @@ void BlindRotate(TRLWE<typename P::targetP> &res,
                  const Polynomial<typename P::targetP> &testvector)
 {
     constexpr uint32_t bitwidth = bits_needed<num_out - 1>();
-    const uint32_t b̄ = 2 * P::targetP::n -
+    const uint32_t bLong = 2 * P::targetP::n -
                        ((tlwe[P::domainP::k * P::domainP::n] >>
                          (std::numeric_limits<typename P::domainP::T>::digits -
                           1 - P::targetP::nbit + bitwidth))
                         << bitwidth);
     res = {};
-    PolynomialMulByXai<typename P::targetP>(res[P::targetP::k], testvector, b̄);
+    PolynomialMulByXai<typename P::targetP>(res[P::targetP::k], testvector, bLong);
     for (int i = 0; i < P::domainP::k * P::domainP::n; i++) {
         constexpr typename P::domainP::T roundoffset =
             1ULL << (std::numeric_limits<typename P::domainP::T>::digits - 2 -
