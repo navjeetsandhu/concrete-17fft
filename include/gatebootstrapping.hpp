@@ -58,14 +58,14 @@ void BlindRotate(TRLWE<typename P::targetP> &res,
         constexpr typename P::domainP::T roundoffset =
             1ULL << (std::numeric_limits<typename P::domainP::T>::digits - 2 -
                      P::targetP::nbit + bitwidth);
-        const uint32_t ā =
+        const uint32_t aLong =
             (tlwe[i] + roundoffset) >>
             (std::numeric_limits<typename P::domainP::T>::digits - 1 -
              P::targetP::nbit + bitwidth)
                 << bitwidth;
-        if (ā == 0) continue;
+        if (aLong == 0) continue;
         // Do not use CMUXFFT to avoid unnecessary copy.
-        CMUXFFTwithPolynomialMulByXaiMinusOne<P>(res, bkfft[i], ā);
+        CMUXFFTwithPolynomialMulByXaiMinusOne<P>(res, bkfft[i], aLong);
     }
 #endif
 }
@@ -112,15 +112,15 @@ void BlindRotate(TRLWE<typename P::targetP> &res,
         constexpr typename P::domainP::T roundoffset =
             1ULL << (std::numeric_limits<typename P::domainP::T>::digits - 2 -
                      P::targetP::nbit + bitwidth);
-        const uint32_t ā =
+        const uint32_t aLong =
             (tlwe[i] + roundoffset) >>
             (std::numeric_limits<typename P::domainP::T>::digits - 1 -
              P::targetP::nbit + bitwidth)
                 << bitwidth;
-        if (ā == 0) continue;
+        if (aLong == 0) continue;
         // Do not use CMUXFFT to avoid unnecessary copy.
         CMUXFFTwithPolynomialMulByXaiMinusOne<typename P::targetP>(res,
-                                                                   bkfft[i], ā);
+                                                                   bkfft[i], aLong);
     }
 #endif
 }
@@ -143,15 +143,15 @@ void BlindRotate(TRLWE<typename P::targetP> &res,
         constexpr typename P::domainP::T roundoffset =
             1ULL << (std::numeric_limits<typename P::domainP::T>::digits - 2 -
                      P::targetP::nbit + bitwidth);
-        const uint32_t ā =
+        const uint32_t aLong =
             (tlwe[i] + roundoffset) >>
             (std::numeric_limits<typename P::domainP::T>::digits - 1 -
              P::targetP::nbit + bitwidth)
                 << bitwidth;
-        if (ā == 0) continue;
+        if (aLong == 0) continue;
         // Do not use CMUXNTT to avoid unnecessary copy.
         CMUXNTTwithPolynomialMulByXaiMinusOne<typename P::targetP>(res,
-                                                                   bkntt[i], ā);
+                                                                   bkntt[i], aLong);
     }
 }
 
@@ -173,15 +173,15 @@ void BlindRotate(TRLWE<typename P::targetP> &res,
         constexpr typename P::domainP::T roundoffset =
             1ULL << (std::numeric_limits<typename P::domainP::T>::digits - 2 -
                      P::targetP::nbit + bitwidth);
-        const uint32_t ā =
+        const uint32_t aLong =
             (tlwe[i] + roundoffset) >>
             (std::numeric_limits<typename P::domainP::T>::digits - 1 -
              P::targetP::nbit + bitwidth)
                 << bitwidth;
-        if (ā == 0) continue;
+        if (aLong == 0) continue;
         // Do not use CMUXNTT to avoid unnecessary copy.
         CMUXRAINTTwithPolynomialMulByXaiMinusOne<typename P::targetP>(
-            res, bkraintt[i], ā);
+            res, bkraintt[i], aLong);
     }
 }
 
