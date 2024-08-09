@@ -35,7 +35,7 @@ Additionally, an optional 128-bit negacyclic FFT module is provided.
    forward transform (or more specifically, a plan with the same internal base
    FFT size).
 
-## Example
+## Examples
 
 ```rust
 use concrete_fft::c64;
