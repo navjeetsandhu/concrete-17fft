@@ -1,4 +1,4 @@
-Concrete-FFT is a pure Rust high performance fast Fourier transform library
+Concrete-FFT is a pure Rust high performance fast Fourier transform library that support gcc 9.1 compiler
 that processes vectors of sizes that are powers of two. It was made to be used
 as a backend in Zama's [TFHE-rs](https://docs.zama.ai/tfhe-rs) library.
 
